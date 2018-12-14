@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ product.name }}</h1>
+
+  <p><strong>Description:</strong> {{ product.description|linebreaks}}</p>
+  <p><strong>Category:</strong> {% for category in product.category.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a> {% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <div style="margin-left:20px;margin-top:20px"></div>
+{% endblock %}
+

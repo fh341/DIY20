@@ -1,0 +1,1 @@
+web: gunicorn DIY20_en.wsgi --log-file -

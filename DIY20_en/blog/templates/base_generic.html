@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block title %}<title>DIY 20</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A blog">
+    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}"/>
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/blog-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <!--<![endif]-->
+</head>
+<body>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <h1 class="brand-title">DIY 20</h1>
+<!--             <h2 class="brand-tagline">20 ingredients for 20 recipes.</h2> -->
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a href="{% url 'products' %}">All ingredients</a>
+                    </li>
+                    <li class="nav-item">
+                       <a href="{% url 'categories' %}">All categories</a>
+                    </li>
+                    <li class="nav-item">
+                       <a href="{% url 'recipes' %}">All recipes</a>
+                    </li>
+                    <!--{% if user.is_authenticated %}
+                            User: {{ user.get_username }}
+                            <li class="nav-item">
+                            <a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+                    {% else %}
+                            <li class="nav-item">
+                            <a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+                    {% endif %} -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+<!--                 <h1 class="content-subhead">Pinned</h1> -->
+
+                <!-- A single blog post -->
+                <section class="post">
+                   <!-- <header class="post-header">
+                        <img width="48" height="48" alt="My image" class="post-avatar" src="{% static 'img/my-image.png' %}">
+
+                        <h2 class="post-title">Introducing my content</h2>
+
+                        <p class="post-meta">
+                            By <a href="#" class="post-author">TLDR</a> under <a class="post-category post-category-design" href="#">DIY</a> <a class="post-category post-category-pure" href="#">Recipes</a>
+                        </p>
+                    </header>-->
+
+                    <div class="post-description">{% block content %}{% endblock %}
+                    {% block pagination %}
+                    {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% endblock %} 
+                    </div>
+                </section>
+            </div>
+
+
+            <div class="footer">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul>
+                        <li class="pure-menu-item"><a href="mailto:contact_tldr@protonmail.com" class="pure-menu-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
