@@ -5,6 +5,7 @@
 
   <p><strong>Description:</strong> {{ product.description|linebreaks}}</p>
   <p><strong>Category:</strong> {% for category in product.category.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a> {% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>Recipe:</strong> {% for recipe in product.recipe_set.all %} <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a> {% if not forloop.last %}, {% endif %}{% endfor %}</p>
   <div style="margin-left:20px;margin-top:20px"></div>
 {% endblock %}
 
